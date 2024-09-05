@@ -102,7 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+#.env
 .venv
 env/
 venv/
@@ -153,17 +153,6 @@ docker-legacy/volumes/etcd/*
 docker-legacy/volumes/minio/*
 docker-legacy/volumes/milvus/*
 docker-legacy/volumes/chroma/*
-
-docker/volumes/app/storage/*
-docker/volumes/certbot/*
-docker/volumes/db/data/*
-docker/volumes/redis/data/*
-docker/volumes/weaviate/*
-docker/volumes/qdrant/*
-docker/volumes/etcd/*
-docker/volumes/minio/*
-docker/volumes/milvus/*
-docker/volumes/chroma/*
 
 docker/nginx/conf.d/default.conf
 docker/middleware.env
