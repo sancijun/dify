@@ -19,6 +19,8 @@ acl Safe_ports port 488		# gss-http
 acl Safe_ports port 591		# filemaker
 acl Safe_ports port 777		# multiling http
 acl CONNECT method CONNECT
+acl shopee_domain dstdomain sg9.aip.mlp.live-test.shopee.io api.siliconflow.cn
+http_access allow shopee_domain
 http_access deny !Safe_ports
 http_access deny CONNECT !SSL_ports
 http_access allow localhost manager
@@ -42,7 +44,13 @@ refresh_pattern .		0	20%	4320
 
 # cache_dir ufs /var/spool/squid 100 16 256
 # upstream proxy, set to your own upstream proxy IP to avoid SSRF attacks
-# cache_peer 172.1.1.1 parent 3128 0 no-query no-digest no-netdb-exchange default 
+# cache_peer 172.1.1.1 parent 3128 0 no-query no-digest no-netdb-exchange default
+cache_peer 10.213.6.203 parent 3128 0 no-query no-digest
+cache_peer_access 10.213.6.203 allow shopee_domain
+cache_peer_access 10.213.6.203 deny all
+
+never_direct allow shopee_domain
+# always_direct allow all
 
 ################################## Reverse Proxy To Sandbox ################################
 http_port ${REVERSE_PROXY_PORT} accel vhost
